@@ -9,5 +9,23 @@
 import Foundation
 
 struct Countdown {
+    var eventName: String
+    var tag: String?
+    var time: Date
     
+    var timeIntervalSetting: TimeIntervalSetting
+}
+
+
+
+
+
+
+
+
+struct TimeIntervalSetting {
+    var days: Bool
+    var hours: Bool
+    var minutes: Bool
+    var seconds: Bool
 }

@@ -10,4 +10,6 @@ import Foundation
 
 class CountdownController {
     
+    private(set) var countdowns: [Countdown] = []
+    
 }
