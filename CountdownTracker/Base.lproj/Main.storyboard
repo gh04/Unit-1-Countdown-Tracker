@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="l0J-Vr-lug">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="l0J-Vr-lug">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -80,7 +80,11 @@
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Sort" image="arrow.up.arrow.down.square" catalog="system" id="8Dh-Vr-Dlg"/>
-                            <barButtonItem title="Filter" image="slider.horizontal.3" catalog="system" id="rFR-0B-7nQ"/>
+                            <barButtonItem title="Filter" image="slider.horizontal.3" catalog="system" id="rFR-0B-7nQ">
+                                <connections>
+                                    <segue destination="5Th-gx-a2G" kind="presentation" id="lnd-q2-ZfZ"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                 </viewController>
@@ -214,6 +218,37 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ojl-J5-NHI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1352.8" y="617.73399014778329"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="m1b-5m-c0d">
+            <objects>
+                <viewController id="5Th-gx-a2G" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Aap-Fg-39S">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ihl-2h-IbF">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <items>
+                                    <navigationItem title="Filter" id="07S-f2-8g9">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Oqh-XV-jWR"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Save" id="o8B-ix-zEj"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Ihl-2h-IbF" firstAttribute="trailing" secondItem="LBQ-4h-Iqn" secondAttribute="trailing" id="gJU-js-pCB"/>
+                            <constraint firstItem="Ihl-2h-IbF" firstAttribute="top" secondItem="LBQ-4h-Iqn" secondAttribute="top" id="kvb-oC-Xmw"/>
+                            <constraint firstItem="Ihl-2h-IbF" firstAttribute="leading" secondItem="LBQ-4h-Iqn" secondAttribute="leading" id="yZl-rM-3GT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="LBQ-4h-Iqn"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hOA-Nn-IRe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2165.5999999999999" y="617.73399014778329"/>
         </scene>
     </scenes>
     <resources>
