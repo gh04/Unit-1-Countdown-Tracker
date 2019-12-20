@@ -10,7 +10,7 @@
         <!--Countdowns-->
         <scene sceneID="3yn-do-80v">
             <objects>
-                <viewController id="lAr-gS-yjp" sceneMemberID="viewController">
+                <viewController id="lAr-gS-yjp" customClass="CountdownTableViewController" customModule="CountdownTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bhD-Xs-YXm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="88" width="375" height="690"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CountdownCell" id="eIH-Qf-2AX">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CountdownCell" id="eIH-Qf-2AX" customClass="CountdownTableViewCell" customModule="CountdownTracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="71.666664123535156"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eIH-Qf-2AX" id="TfF-Go-Imd">
@@ -59,6 +59,12 @@
                                                 <constraint firstItem="EJv-7J-Cjc" firstAttribute="centerY" secondItem="TfF-Go-Imd" secondAttribute="centerY" id="nS2-pd-eU7"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="countdownTimeLabel" destination="EJv-7J-Cjc" id="Lhs-ns-mfV"/>
+                                            <outlet property="eventNameLabel" destination="ich-Nf-RKC" id="2Cm-dY-hrf"/>
+                                            <outlet property="tagLabel" destination="2Db-jr-rWK" id="vQD-Ff-7hL"/>
+                                            <segue destination="gin-Nu-Ef0" kind="presentation" identifier="EditCountdownSegue" id="HGE-ne-MqT"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -79,8 +85,16 @@
                                     <segue destination="gin-Nu-Ef0" kind="presentation" identifier="AddCountdownSegue" id="zHF-30-kr0"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Sort" image="arrow.up.arrow.down.square" catalog="system" id="8Dh-Vr-Dlg"/>
-                            <barButtonItem title="Filter" image="slider.horizontal.3" catalog="system" id="rFR-0B-7nQ"/>
+                            <barButtonItem title="Sort" image="arrow.up.arrow.down.square" catalog="system" id="8Dh-Vr-Dlg">
+                                <connections>
+                                    <action selector="sortButtonTapped:" destination="lAr-gS-yjp" id="RDr-mw-nDV"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Filter" image="slider.horizontal.3" catalog="system" id="rFR-0B-7nQ">
+                                <connections>
+                                    <segue destination="bFN-wE-Omy" kind="presentation" identifier="FilterSegue" id="HGl-fj-8ln"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                 </viewController>
@@ -104,12 +118,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UGW-kA-Kfb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-346" y="618"/>
+            <point key="canvasLocation" x="-143" y="618"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Countdown View Controller-->
         <scene sceneID="HpY-yX-hEA">
             <objects>
-                <viewController id="gin-Nu-Ef0" sceneMemberID="viewController">
+                <viewController id="gin-Nu-Ef0" customClass="AddCountdownViewController" customModule="CountdownTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lcS-WA-pYA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -118,8 +132,16 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                                 <items>
                                     <navigationItem title="Add Countdown" id="4ep-MB-ly7">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Gqm-ca-FCd"/>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="oun-h8-NbD"/>
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Gqm-ca-FCd">
+                                            <connections>
+                                                <action selector="cancelButtonTapped:" destination="gin-Nu-Ef0" id="9Wg-MD-JZX"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="oun-h8-NbD">
+                                            <connections>
+                                                <action selector="saveButtonTapped:" destination="gin-Nu-Ef0" id="ybR-VJ-Aoa"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -158,7 +180,7 @@
                                 <rect key="frame" x="0.0" y="473.33333333333331" width="375" height="250.66666666666669"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TimeIntervalCell" id="99G-RF-sEe">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TimeIntervalCell" id="99G-RF-sEe" customClass="TimeIntervalTableViewCell" customModule="CountdownTracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="99G-RF-sEe" id="jBV-td-V6u">
@@ -167,6 +189,9 @@
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CWC-Av-es3">
                                                     <rect key="frame" x="311" y="6.3333333333333321" width="51" height="30.999999999999996"/>
+                                                    <connections>
+                                                        <action selector="timeIntervalSwitchIsToggled:" destination="99G-RF-sEe" eventType="valueChanged" id="4SI-xu-foF"/>
+                                                    </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Days" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jDc-Mc-1v3">
                                                     <rect key="frame" x="15" y="11.666666666666666" width="38" height="20.333333333333336"/>
@@ -183,6 +208,9 @@
                                                 <constraint firstItem="jDc-Mc-1v3" firstAttribute="leading" secondItem="jBV-td-V6u" secondAttribute="leadingMargin" id="SvG-ME-ZOj"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="timeIntervalLabel" destination="jDc-Mc-1v3" id="REu-dJ-1hY"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
@@ -210,14 +238,107 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Bvi-px-OIr"/>
                     </view>
+                    <connections>
+                        <outlet property="eventDatePicker" destination="ikt-Zu-Clr" id="Vv6-lO-3Dw"/>
+                        <outlet property="eventNameTextField" destination="FpE-hg-qc3" id="StR-bu-pP4"/>
+                        <outlet property="tagNameTextField" destination="KSs-Yq-s9e" id="E4i-bD-Zou"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ojl-J5-NHI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1352.8" y="617.73399014778329"/>
+            <point key="canvasLocation" x="1447" y="904"/>
+        </scene>
+        <!--Filter Table View Controller-->
+        <scene sceneID="xAv-Pe-pQ8">
+            <objects>
+                <viewController id="bFN-wE-Omy" customClass="FilterTableViewController" customModule="CountdownTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VDY-Wa-Nl3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LWG-yR-edH">
+                                <rect key="frame" x="0.0" y="117" width="375" height="607"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FilterCell" id="Sk5-vn-Qut" customClass="FilterTableViewCell" customModule="CountdownTracker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Sk5-vn-Qut" id="sy5-aQ-Mhc">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eLf-B3-4ux">
+                                                    <rect key="frame" x="311" y="6.3333333333333321" width="51" height="30.999999999999996"/>
+                                                    <connections>
+                                                        <action selector="filterSwitchIsToggled:" destination="Sk5-vn-Qut" eventType="valueChanged" id="kmW-ia-eOx"/>
+                                                    </connections>
+                                                </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tag Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DMZ-hP-dmo">
+                                                    <rect key="frame" x="15" y="11.333333333333336" width="77" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="DMZ-hP-dmo" firstAttribute="leading" secondItem="sy5-aQ-Mhc" secondAttribute="leadingMargin" id="DcJ-VX-2YT"/>
+                                                <constraint firstItem="eLf-B3-4ux" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DMZ-hP-dmo" secondAttribute="trailing" constant="8" symbolic="YES" id="SHf-QS-F7h"/>
+                                                <constraint firstItem="eLf-B3-4ux" firstAttribute="trailing" secondItem="sy5-aQ-Mhc" secondAttribute="trailingMargin" id="TQh-6f-uBL"/>
+                                                <constraint firstItem="eLf-B3-4ux" firstAttribute="centerY" secondItem="sy5-aQ-Mhc" secondAttribute="centerY" id="i7N-bl-gRR"/>
+                                                <constraint firstItem="DMZ-hP-dmo" firstAttribute="centerY" secondItem="sy5-aQ-Mhc" secondAttribute="centerY" id="pmt-eA-I8c"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="tagNameLabel" destination="DMZ-hP-dmo" id="qDu-Gs-fZ6"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mpq-dT-Iya">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <items>
+                                    <navigationItem id="P7V-qg-usU">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="cjX-2u-7Re">
+                                            <connections>
+                                                <action selector="backButtonTapped:" destination="bFN-wE-Omy" id="DVf-Tz-oRq"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter by..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U05-93-Z46">
+                                <rect key="frame" x="16" y="76" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="2gb-CD-fGd" firstAttribute="trailing" secondItem="LWG-yR-edH" secondAttribute="trailing" id="7Uq-my-1DQ"/>
+                            <constraint firstItem="mpq-dT-Iya" firstAttribute="leading" secondItem="2gb-CD-fGd" secondAttribute="leading" id="COT-Gn-PWB"/>
+                            <constraint firstItem="LWG-yR-edH" firstAttribute="top" secondItem="U05-93-Z46" secondAttribute="bottom" constant="20" id="Fos-g8-9V7"/>
+                            <constraint firstItem="mpq-dT-Iya" firstAttribute="trailing" secondItem="2gb-CD-fGd" secondAttribute="trailing" id="Jqd-DB-ITv"/>
+                            <constraint firstItem="U05-93-Z46" firstAttribute="leading" secondItem="2gb-CD-fGd" secondAttribute="leading" constant="16" id="LlP-Y5-4sk"/>
+                            <constraint firstItem="U05-93-Z46" firstAttribute="top" secondItem="mpq-dT-Iya" secondAttribute="bottom" constant="20" id="Q6c-QI-npa"/>
+                            <constraint firstItem="mpq-dT-Iya" firstAttribute="top" secondItem="2gb-CD-fGd" secondAttribute="top" id="TK1-uQ-b3G"/>
+                            <constraint firstItem="LWG-yR-edH" firstAttribute="leading" secondItem="2gb-CD-fGd" secondAttribute="leading" id="lfa-wH-d1Y"/>
+                            <constraint firstItem="2gb-CD-fGd" firstAttribute="trailing" secondItem="U05-93-Z46" secondAttribute="trailing" constant="16" id="vFW-Ns-qqh"/>
+                            <constraint firstItem="2gb-CD-fGd" firstAttribute="bottom" secondItem="LWG-yR-edH" secondAttribute="bottom" id="w2b-cI-3Yj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="2gb-CD-fGd"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yxn-v3-NFX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1447" y="258"/>
         </scene>
     </scenes>
     <resources>
         <image name="arrow.up.arrow.down.square" catalog="system" width="64" height="56"/>
         <image name="slider.horizontal.3" catalog="system" width="64" height="50"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="HGE-ne-MqT"/>
+    </inferredMetricsTieBreakers>
 </document>
