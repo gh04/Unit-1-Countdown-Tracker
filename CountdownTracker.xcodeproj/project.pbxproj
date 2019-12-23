@@ -20,6 +20,7 @@
 		6380B6D523AC872E003A4B5F /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6380B6D423AC872E003A4B5F /* FilterTableViewCell.swift */; };
 		6380B6D723AC875E003A4B5F /* Countdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6380B6D623AC875E003A4B5F /* Countdown.swift */; };
 		6380B6D923AC8789003A4B5F /* CountdownController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6380B6D823AC8789003A4B5F /* CountdownController.swift */; };
+		63B3A85D23B08B180030EFA2 /* CountdownData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B3A85C23B08B180030EFA2 /* CountdownData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		6380B6D423AC872E003A4B5F /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
 		6380B6D623AC875E003A4B5F /* Countdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Countdown.swift; sourceTree = "<group>"; };
 		6380B6D823AC8789003A4B5F /* CountdownController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownController.swift; sourceTree = "<group>"; };
+		63B3A85C23B08B180030EFA2 /* CountdownData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				6380B6D623AC875E003A4B5F /* Countdown.swift */,
+				63B3A85C23B08B180030EFA2 /* CountdownData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -200,6 +203,7 @@
 				6380B6D523AC872E003A4B5F /* FilterTableViewCell.swift in Sources */,
 				632DFE0423AB14D300402E17 /* SceneDelegate.swift in Sources */,
 				6380B6CF23AC8665003A4B5F /* AddCountdownViewController.swift in Sources */,
+				63B3A85D23B08B180030EFA2 /* CountdownData.swift in Sources */,
 				6380B6D923AC8789003A4B5F /* CountdownController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
