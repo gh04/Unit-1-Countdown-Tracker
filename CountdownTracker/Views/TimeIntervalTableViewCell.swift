@@ -8,18 +8,39 @@
 
 import UIKit
 
+protocol TimeIntervalTableViewCellDelegate {
+    func toggleTimeIntervalSwitch(for cell: TimeIntervalTableViewCell)
+}
+
 class TimeIntervalTableViewCell: UITableViewCell {
 
+    // MARK: - Properties
+    
+    var timeIntervalSetting: TimeIntervalSetting? {
+        didSet {
+            updateViews()
+        }
+    }
+    
+    var delegate: TimeIntervalTableViewCellDelegate?
+    
     //MARK: - IBOutlets
 
     @IBOutlet weak var timeIntervalLabel: UILabel!
+    @IBOutlet weak var timeIntervalSwitch: UISwitch!
     
     //MARK: - IBActions
 
     @IBAction func timeIntervalSwitchIsToggled(_ sender: UISwitch) {
-        
+        delegate?.toggleTimeIntervalSwitch(for: self)
     }
     
+    func updateViews() {
+        guard let timeIntervalSetting = timeIntervalSetting else { return }
+        
+        timeIntervalLabel.text = timeIntervalSetting.name
+        timeIntervalSwitch.isOn = timeIntervalSetting.state
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

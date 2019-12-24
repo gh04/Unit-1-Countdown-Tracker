@@ -10,6 +10,11 @@ import UIKit
 
 class FilterTableViewController: UIViewController {
     
+    //MARK: Properties
+
+    var countdownController: CountdownController?
+    var countdownTableView: UITableView?
+    
     //MARK: - IBActions
 
     @IBAction func backButtonTapped(_ sender: UIBarButtonItem) {

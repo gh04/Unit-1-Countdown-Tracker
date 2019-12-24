@@ -67,6 +67,9 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="lAr-gS-yjp" id="Zss-0F-bih"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -97,6 +100,9 @@
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="O5W-cP-z42" id="szD-bn-bkL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iAd-vk-RcK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -120,10 +126,10 @@
             </objects>
             <point key="canvasLocation" x="-143" y="618"/>
         </scene>
-        <!--Add Countdown View Controller-->
+        <!--Countdown Detail View Controller-->
         <scene sceneID="HpY-yX-hEA">
             <objects>
-                <viewController id="gin-Nu-Ef0" customClass="AddCountdownViewController" customModule="CountdownTracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="gin-Nu-Ef0" customClass="CountdownDetailViewController" customModule="CountdownTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lcS-WA-pYA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -210,6 +216,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="timeIntervalLabel" destination="jDc-Mc-1v3" id="REu-dJ-1hY"/>
+                                            <outlet property="timeIntervalSwitch" destination="CWC-Av-es3" id="NhK-fD-Eje"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -241,6 +248,7 @@
                     <connections>
                         <outlet property="eventDatePicker" destination="ikt-Zu-Clr" id="Vv6-lO-3Dw"/>
                         <outlet property="eventNameTextField" destination="FpE-hg-qc3" id="StR-bu-pP4"/>
+                        <outlet property="tableView" destination="6Rs-15-htd" id="dCY-01-qV4"/>
                         <outlet property="tagNameTextField" destination="KSs-Yq-s9e" id="E4i-bD-Zou"/>
                     </connections>
                 </viewController>

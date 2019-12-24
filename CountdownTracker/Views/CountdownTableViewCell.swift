@@ -16,6 +16,26 @@ class CountdownTableViewCell: UITableViewCell {
     @IBOutlet weak var tagLabel: UILabel!
     @IBOutlet weak var countdownTimeLabel: UILabel!
     
+    var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "d:HH:mm:ss"
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        return formatter
+    }()
+    
+    var countdown: Countdown? {
+        didSet {
+            updateViews()
+        }
+    }
+    
+    func updateViews() {
+        guard let countdown = countdown else { return }
+        
+        eventNameLabel.text = countdown.eventName
+        tagLabel.text = countdown.tag
+        countdownTimeLabel.text = dateFormatter.string(from: Date(timeIntervalSinceReferenceDate: countdown.timeRemaining))
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

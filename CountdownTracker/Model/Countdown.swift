@@ -19,18 +19,28 @@ enum CountdownState {
     case reset
 }
 
-class Countdown {
+class Countdown: CountdownData {
     
     // MARK: - Initializer
     
-    init(eventName: String, tag: String? = nil, timeIntervalSetting: TimeIntervalSetting, eventDate: Date) {
-        self.countdownData = CountdownData(eventName: eventName, tag: tag, eventDate: eventDate, timeIntervalSetting: timeIntervalSetting)
+    init(eventName: String, tag: String? = nil, timeIntervalSetting: [TimeIntervalSetting], eventDate: Date) {
+        //self.countdownData = CountdownData(eventName: eventName, tag: tag, eventDate: eventDate, timeIntervalSetting: timeIntervalSetting)
         self.state = .reset
+        super.init(eventName: eventName, tag: tag, eventDate: eventDate, timeIntervalSetting: timeIntervalSetting)
+    }
+    
+    init(with countdownData: CountdownData) {
+        self.state = .reset
+        super.init(eventName: countdownData.eventName, tag: countdownData.tag, eventDate: countdownData.eventDate, timeIntervalSetting: countdownData.timeIntervalSetting)
+    }
+    
+    required init(from decoder: Decoder) throws {
+        fatalError("init(from:) has not been implemented")
     }
     
     // MARK: - Properties
     
-    var countdownData: CountdownData
+    //var countdownData: CountdownData
     
     private var timer: Timer?
     private var stopDate: Date?
@@ -87,10 +97,4 @@ class Countdown {
         }
     }
     
-}
-
-extension Countdown: Equatable {
-        static func == (lhs: Countdown, rhs: Countdown) -> Bool {
-            lhs.countdownData == rhs.countdownData
-        }
 }

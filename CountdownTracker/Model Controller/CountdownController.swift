@@ -13,27 +13,62 @@ class CountdownController {
     // MARK: - Initializer
 
     init() {
+        loadFromPersistentStore()
         
+        for data in countdownData {
+            let countdown = Countdown(with: data)
+            countdowns.append(countdown)
+        }
     }
     
     // MARK: - Properties
 
     private(set) var countdownData: [CountdownData] = []
     
-    var countdowns: [Countdown] = []
+    private(set) var countdowns: [Countdown] = []
+    
+    var tags: [String] {
+        var result: [String] = []
+        
+        for countdown in countdownData {
+            if let tag = countdown.tag,
+            !result.contains(tag){
+                result.append(tag)
+            }
+        }
+        return result
+    }
 
     // MARK: - CRUD Methods
     
-    func createCountdown() {
+    @discardableResult func createCountdown(with countdownData: CountdownData) -> Countdown? {
+        guard !self.countdownData.contains(countdownData) else { return nil }
         
+        self.countdownData.append(countdownData)
+        countdowns.append(Countdown(with: countdownData))
+        saveToPersistentStore()
+        
+        return Countdown(with: countdownData)
     }
 
-    func deleteCountdown() {
+    func deleteCountdown(with countdownData: CountdownData) {
+        guard let countdownDataIndex = self.countdownData.firstIndex(of: countdownData),
+            let countdownIndex = self.countdowns.firstIndex(of: Countdown(with: countdownData)) else { return }
         
+        self.countdownData.remove(at: countdownDataIndex)
+        countdowns.remove(at: countdownIndex)
+        saveToPersistentStore()
     }
     
-    func updateCountdown() {
+    func updateCountdown(from currentCountdownData: CountdownData, to newCountdownData: CountdownData) {
+        guard let countdownDataIndex = self.countdownData.firstIndex(of: currentCountdownData),
+            let countdownIndex = self.countdowns.firstIndex(of: Countdown(with: currentCountdownData)) else { return }
         
+        self.countdownData.remove(at: countdownDataIndex)
+        self.countdownData.append(newCountdownData)
+        countdowns.remove(at: countdownIndex)
+        countdowns.append(Countdown(with: newCountdownData))
+        saveToPersistentStore()
     }
     
     // MARK: - Persistence
