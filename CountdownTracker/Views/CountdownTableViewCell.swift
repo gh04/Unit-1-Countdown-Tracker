@@ -16,10 +16,10 @@ class CountdownTableViewCell: UITableViewCell {
     @IBOutlet weak var tagLabel: UILabel!
     @IBOutlet weak var countdownTimeLabel: UILabel!
     
-    var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "d:HH:mm:ss"
-        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+    var dateFormatter: DateComponentsFormatter = {
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .short
+        formatter.allowedUnits = [.day, .hour, .minute, .second]
         return formatter
     }()
     
@@ -34,13 +34,14 @@ class CountdownTableViewCell: UITableViewCell {
         
         eventNameLabel.text = countdown.eventName
         tagLabel.text = countdown.tag
-        countdownTimeLabel.text = dateFormatter.string(from: Date(timeIntervalSinceReferenceDate: countdown.timeRemaining))
+        countdownTimeLabel.text = dateFormatter.string(from: countdown.timeRemaining)
+        print(countdownTimeLabel.text ?? "nil")
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+//    override func awakeFromNib() {
+//        super.awakeFromNib()
+//        // Initialization code
+//    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

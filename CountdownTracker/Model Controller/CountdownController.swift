@@ -14,11 +14,7 @@ class CountdownController {
 
     init() {
         loadFromPersistentStore()
-        
-        for data in countdownData {
-            let countdown = Countdown(with: data)
-            countdowns.append(countdown)
-        }
+        initializeCountdowns()
     }
     
     // MARK: - Properties
@@ -30,7 +26,7 @@ class CountdownController {
     var tags: [String] {
         var result: [String] = []
         
-        for countdown in countdownData {
+        for countdown in countdowns {
             if let tag = countdown.tag,
             !result.contains(tag){
                 result.append(tag)
@@ -41,33 +37,57 @@ class CountdownController {
 
     // MARK: - CRUD Methods
     
+    func initializeCountdowns() {
+        for data in countdownData {
+            let newCountdown = Countdown(with: data)
+            newCountdown.start()
+            countdowns.append(newCountdown)
+        }
+    }
+    
     @discardableResult func createCountdown(with countdownData: CountdownData) -> Countdown? {
-        guard !self.countdownData.contains(countdownData) else { return nil }
+        //guard !self.countdownData.contains(countdownData) else { return nil }
         
         self.countdownData.append(countdownData)
-        countdowns.append(Countdown(with: countdownData))
+        
+        let newCountdown = Countdown(with: countdownData)
+        newCountdown.start()
+        countdowns.append(newCountdown)
         saveToPersistentStore()
         
         return Countdown(with: countdownData)
     }
 
     func deleteCountdown(with countdownData: CountdownData) {
-        guard let countdownDataIndex = self.countdownData.firstIndex(of: countdownData),
-            let countdownIndex = self.countdowns.firstIndex(of: Countdown(with: countdownData)) else { return }
+        guard let countdownDataIndex = self.countdownData.firstIndex(of: countdownData) else { return }
+        guard let countdownIndex = self.countdowns.firstIndex(of: Countdown(with: countdownData)) else { return }
         
         self.countdownData.remove(at: countdownDataIndex)
+        countdowns[countdownIndex].cancelTimer()
         countdowns.remove(at: countdownIndex)
         saveToPersistentStore()
     }
     
     func updateCountdown(from currentCountdownData: CountdownData, to newCountdownData: CountdownData) {
-        guard let countdownDataIndex = self.countdownData.firstIndex(of: currentCountdownData),
-            let countdownIndex = self.countdowns.firstIndex(of: Countdown(with: currentCountdownData)) else { return }
+        guard let countdownDataIndex = self.countdownData.firstIndex(of: currentCountdownData) else { return }
+        guard let countdownIndex = self.countdowns.firstIndex(of: Countdown(with: currentCountdownData)) else { return }
         
-        self.countdownData.remove(at: countdownDataIndex)
-        self.countdownData.append(newCountdownData)
-        countdowns.remove(at: countdownIndex)
-        countdowns.append(Countdown(with: newCountdownData))
+        countdownData[countdownDataIndex].eventDate = newCountdownData.eventDate
+        countdownData[countdownDataIndex].eventName = newCountdownData.eventName
+        countdownData[countdownDataIndex].tag = newCountdownData.tag
+        countdownData[countdownDataIndex].timeIntervalSetting = newCountdownData.timeIntervalSetting
+        countdownData.insert(newCountdownData, at: countdownDataIndex)
+        countdownData.remove(at: countdownDataIndex + 1)
+
+        countdowns[countdownIndex].eventDate = newCountdownData.eventDate
+        countdowns[countdownIndex].eventName = newCountdownData.eventName
+        countdowns[countdownIndex].tag = newCountdownData.tag
+        countdowns[countdownIndex].timeIntervalSetting = newCountdownData.timeIntervalSetting
+        countdowns[countdownIndex].start()
+//        let newCountdown = Countdown(with: newCountdownData)
+//        countdowns.insert(newCountdown, at: countdownIndex)
+//        countdowns.remove(at: countdownIndex + 1)
+        
         saveToPersistentStore()
     }
     
@@ -84,10 +104,10 @@ class CountdownController {
         let encoder = PropertyListEncoder()
         
         do {
-            let countdownsData = try encoder.encode(countdownData)
-            try countdownsData.write(to: url)
+            let data = try encoder.encode(countdownData)
+            try data.write(to: url)
         } catch {
-            NSLog("Error saving countdowns data: \(error)")
+            NSLog("Error saving countdownData: \(error)")
         }
     }
     
@@ -97,10 +117,10 @@ class CountdownController {
             guard let url = countdownTrackerURL, fm.fileExists(atPath: url.path) else { return }
             let data = try Data(contentsOf: url)
             let decoder = PropertyListDecoder()
-            let decodeCountdowns = try decoder.decode([CountdownData].self, from: data)
-            countdownData = decodeCountdowns
+            let decodeCountdownData = try decoder.decode([CountdownData].self, from: data)
+            countdownData = decodeCountdownData
         } catch {
-            NSLog("Error loading countdowns data: \(error)")
+            NSLog("Error loading countdownData: \(error)")
         }
     }
     

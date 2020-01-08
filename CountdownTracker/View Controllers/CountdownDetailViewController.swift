@@ -36,6 +36,8 @@ class CountdownDetailViewController: UIViewController {
         
         let tag = tagNameTextField.text
         let eventDate = eventDatePicker.date
+        
+        // MARK: Fix Me
         let timeIntervalSetting = [TimeIntervalSetting(name: "Days", state: true)]
         
         let newCountdownData = CountdownData(eventName: eventName, tag: tag, eventDate: eventDate, timeIntervalSetting: timeIntervalSetting)

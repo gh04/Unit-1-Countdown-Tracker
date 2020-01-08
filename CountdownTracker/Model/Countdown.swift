@@ -39,9 +39,7 @@ class Countdown: CountdownData {
     }
     
     // MARK: - Properties
-    
-    //var countdownData: CountdownData
-    
+        
     private var timer: Timer?
     private var stopDate: Date?
     private(set) var state: CountdownState
@@ -62,9 +60,10 @@ class Countdown: CountdownData {
     // MARK: - Methods
 
     func start() {
+        print("Timer started")
         cancelTimer()
         timer = Timer.scheduledTimer(withTimeInterval: 0.03, repeats: true, block: updateTimer(timer:))
-        stopDate = Date(timeIntervalSinceNow: timeRemaining)
+        stopDate = eventDate
         state = .started
     }
     

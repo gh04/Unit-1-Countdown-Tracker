@@ -12,7 +12,6 @@ class CountdownData: Codable {
     var eventName: String
     var tag: String?
     var eventDate: Date
-    //var timeIntervalSetting: TimeIntervalSetting
     var timeIntervalSetting: [TimeIntervalSetting]
     
     
