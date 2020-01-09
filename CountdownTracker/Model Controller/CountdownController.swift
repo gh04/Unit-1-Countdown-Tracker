@@ -75,14 +75,12 @@ class CountdownController {
         countdownData[countdownDataIndex].eventDate = newCountdownData.eventDate
         countdownData[countdownDataIndex].eventName = newCountdownData.eventName
         countdownData[countdownDataIndex].tag = newCountdownData.tag
-        countdownData[countdownDataIndex].timeIntervalSetting = newCountdownData.timeIntervalSetting
-        countdownData.insert(newCountdownData, at: countdownDataIndex)
-        countdownData.remove(at: countdownDataIndex + 1)
+//        countdownData.insert(newCountdownData, at: countdownDataIndex)
+//        countdownData.remove(at: countdownDataIndex + 1)
 
         countdowns[countdownIndex].eventDate = newCountdownData.eventDate
         countdowns[countdownIndex].eventName = newCountdownData.eventName
         countdowns[countdownIndex].tag = newCountdownData.tag
-        countdowns[countdownIndex].timeIntervalSetting = newCountdownData.timeIntervalSetting
         countdowns[countdownIndex].start()
 //        let newCountdown = Countdown(with: newCountdownData)
 //        countdowns.insert(newCountdown, at: countdownIndex)

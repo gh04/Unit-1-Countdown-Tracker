@@ -10,20 +10,22 @@ import UIKit
 
 class CountdownTableViewController: UIViewController {
 
-    //MARK: Properties
+    //MARK: - Properties
 
     var countdownController = CountdownController()
     
-    //MARK: IBOutlets
+    //MARK: - IBOutlets
     
     @IBOutlet weak var tableView: UITableView!
     
-    //MARK: IBActions
+    //MARK: - IBActions
     
     @IBAction func sortButtonTapped(_ sender: UIBarButtonItem) {
         
     }
     
+    //MARK: - Methods
+
     override func viewDidLoad() {
         super.viewDidLoad()
         countdownController.loadFromPersistentStore()
@@ -32,30 +34,38 @@ class CountdownTableViewController: UIViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "AddCountdownSegue" {
+        
+        switch segue.identifier {
+        case "AddCountdownSegue":
             guard let countdownDetailVC = segue.destination as? CountdownDetailViewController else { return }
-            
             countdownDetailVC.countdownController = countdownController
             countdownDetailVC.countdownTableView = tableView
             
-        } else if segue.identifier == "EditCountdownSegue" {
+        case "EditCountdownSegue":
             guard let countdownDetailVC = segue.destination as? CountdownDetailViewController,
                 let cell = sender as? CountdownTableViewCell else { return }
-            
             countdownDetailVC.countdownController = countdownController
             countdownDetailVC.countdownTableView = tableView
-            
             countdownDetailVC.countdown = cell.countdown
-            
-        } else if segue.identifier == "FilterSegue" {
+            countdownDetailVC.countdown = cell.countdown
+
+        case "FilterSegue":
             guard let filterTableVC = segue.destination as? FilterTableViewController else { return }
-            
             filterTableVC.countdownController = countdownController
             filterTableVC.countdownTableView = tableView
+            
+        case "SettingsSegue":
+            guard let SettingsTableVC = segue.destination as? SettingsTableViewController else { return }
+            SettingsTableVC.delegate = self
+            
+        default:
+            return
         }
     }
 
 }
+
+// MARK: - Data Source
 
 extension CountdownTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -79,5 +89,16 @@ extension CountdownTableViewController: UITableViewDataSource {
             countdownController.deleteCountdown(with: countdownData)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
+    }
+}
+
+// MARK: - Settings Delegate
+
+extension CountdownTableViewController: CountdownSettingsDelegate {
+    func countdownDisplaySettingsChanged() {
+        if let countdownDisplaySettings = UserDefaults.standard.array(forKey: .countdownDisplaySettingsKey) as? [Bool] {
+            print(countdownDisplaySettings)
+        }
+        tableView.reloadData()
     }
 }

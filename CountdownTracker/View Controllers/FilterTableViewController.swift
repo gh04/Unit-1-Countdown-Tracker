@@ -10,7 +10,7 @@ import UIKit
 
 class FilterTableViewController: UIViewController {
     
-    //MARK: Properties
+    //MARK: - Properties
 
     var countdownController: CountdownController?
     var countdownTableView: UITableView?
@@ -18,7 +18,7 @@ class FilterTableViewController: UIViewController {
     //MARK: - IBActions
 
     @IBAction func backButtonTapped(_ sender: UIBarButtonItem) {
-        
+        dismiss(animated: true, completion: nil)
     }
     
     

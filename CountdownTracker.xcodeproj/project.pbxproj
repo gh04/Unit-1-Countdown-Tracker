@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6301F7EA23C70EC400329141 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6301F7E923C70EC400329141 /* SettingsTableViewController.swift */; };
 		632DFE0223AB14D300402E17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632DFE0123AB14D300402E17 /* AppDelegate.swift */; };
 		632DFE0423AB14D300402E17 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632DFE0323AB14D300402E17 /* SceneDelegate.swift */; };
 		632DFE0923AB14D300402E17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 632DFE0723AB14D300402E17 /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6301F7E923C70EC400329141 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		632DFDFE23AB14D300402E17 /* CountdownTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CountdownTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		632DFE0123AB14D300402E17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		632DFE0323AB14D300402E17 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				6380B6CC23AC8576003A4B5F /* CountdownTableViewController.swift */,
 				6380B6CE23AC8665003A4B5F /* CountdownDetailViewController.swift */,
 				6380B6D023AC86AC003A4B5F /* FilterTableViewController.swift */,
+				6301F7E923C70EC400329141 /* SettingsTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6380B6D123AC86AC003A4B5F /* FilterTableViewController.swift in Sources */,
+				6301F7EA23C70EC400329141 /* SettingsTableViewController.swift in Sources */,
 				6380B6C923AC822E003A4B5F /* CountdownTableViewCell.swift in Sources */,
 				6380B6D323AC870F003A4B5F /* TimeIntervalTableViewCell.swift in Sources */,
 				6380B6CD23AC8576003A4B5F /* CountdownTableViewController.swift in Sources */,

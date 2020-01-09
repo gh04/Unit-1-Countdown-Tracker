@@ -16,12 +16,7 @@ class CountdownTableViewCell: UITableViewCell {
     @IBOutlet weak var tagLabel: UILabel!
     @IBOutlet weak var countdownTimeLabel: UILabel!
     
-    var dateFormatter: DateComponentsFormatter = {
-        let formatter = DateComponentsFormatter()
-        formatter.unitsStyle = .short
-        formatter.allowedUnits = [.day, .hour, .minute, .second]
-        return formatter
-    }()
+    //MARK: - Properties
     
     var countdown: Countdown? {
         didSet {
@@ -29,13 +24,42 @@ class CountdownTableViewCell: UITableViewCell {
         }
     }
     
+    var dateFormatter: DateComponentsFormatter = {
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .short
+                
+        if let countdownDisplaySettings = UserDefaults.standard.array(forKey: .countdownDisplaySettingsKey) as? [Bool] {
+            //MARK: TODO: Update Units
+            let units: [NSCalendar.Unit] = [.day, .hour, .minute, .second]
+            var allowedUnits: NSCalendar.Unit = []
+            
+            for i in units.indices where countdownDisplaySettings[i] {
+                allowedUnits.insert(units[i])
+            }
+            
+            formatter.allowedUnits = allowedUnits
+            
+        } else {
+            formatter.allowedUnits = [.day, .hour, .minute, .second]
+        }
+        
+        return formatter
+    }()
+    
+    //MARK: - Methods
+    
     func updateViews() {
         guard let countdown = countdown else { return }
         
+        countdown.delegate = self
         eventNameLabel.text = countdown.eventName
         tagLabel.text = countdown.tag
-        countdownTimeLabel.text = dateFormatter.string(from: countdown.timeRemaining)
-        print(countdownTimeLabel.text ?? "nil")
+        
+        if countdown.state == .started {
+            countdownTimeLabel.text = dateFormatter.string(from: countdown.timeRemaining)
+        } else {
+            countdownTimeLabel.text = dateFormatter.string(from: 0)
+        }
     }
     
 //    override func awakeFromNib() {
@@ -43,10 +67,30 @@ class CountdownTableViewCell: UITableViewCell {
 //        // Initialization code
 //    }
 
+    /*
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
+    */
 
+}
+
+//MARK: - Countdown Delegate
+
+extension CountdownTableViewCell: CountdownDelegate {
+    func countdownDidUpdate(timeRemaining: TimeInterval) {
+        updateViews()
+    }
+    
+    func countdownDidFinish() {
+        updateViews()
+        showAlert()
+    }
+    
+    //MARK: TODO: Implement Alert
+    func showAlert() {
+        
+    }
 }
