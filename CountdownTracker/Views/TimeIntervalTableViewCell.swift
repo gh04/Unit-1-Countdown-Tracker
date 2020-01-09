@@ -16,11 +16,11 @@ class TimeIntervalTableViewCell: UITableViewCell {
 
     // MARK: - Properties
     
-    var timeIntervalSetting: TimeIntervalSetting? {
-        didSet {
-            updateViews()
-        }
-    }
+//    var timeIntervalSetting: TimeIntervalSetting? {
+//        didSet {
+//            updateViews()
+//        }
+//    }
     
     var delegate: TimeIntervalTableViewCellDelegate?
     
@@ -35,12 +35,12 @@ class TimeIntervalTableViewCell: UITableViewCell {
         delegate?.toggleTimeIntervalSwitch(for: self)
     }
     
-    func updateViews() {
-        guard let timeIntervalSetting = timeIntervalSetting else { return }
-        
-        timeIntervalLabel.text = timeIntervalSetting.name
-        timeIntervalSwitch.isOn = timeIntervalSetting.state
-    }
+//    func updateViews() {
+//        guard let timeIntervalSetting = timeIntervalSetting else { return }
+//
+//        timeIntervalLabel.text = timeIntervalSetting.name
+//        timeIntervalSwitch.isOn = timeIntervalSetting.state
+//    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

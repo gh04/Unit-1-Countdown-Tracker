@@ -23,7 +23,7 @@ class Countdown: CountdownData {
     
     // MARK: - Initializer
     
-    init(eventName: String, tag: String? = nil, timeIntervalSetting: [TimeIntervalSetting], eventDate: Date) {
+    init(eventName: String, tag: String? = nil, timeIntervalSetting: TimeIntervalSetting, eventDate: Date) {
         //self.countdownData = CountdownData(eventName: eventName, tag: tag, eventDate: eventDate, timeIntervalSetting: timeIntervalSetting)
         self.state = .reset
         super.init(eventName: eventName, tag: tag, eventDate: eventDate, timeIntervalSetting: timeIntervalSetting)

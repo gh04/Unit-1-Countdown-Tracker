@@ -19,24 +19,24 @@
                                 <rect key="frame" x="0.0" y="88" width="375" height="690"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CountdownCell" id="eIH-Qf-2AX" customClass="CountdownTableViewCell" customModule="CountdownTracker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="64.333335876464844"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CountdownCell" rowHeight="50" id="eIH-Qf-2AX" customClass="CountdownTableViewCell" customModule="CountdownTracker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eIH-Qf-2AX" id="TfF-Go-Imd">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="64.333335876464844"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="redraw" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eIH-Qf-2AX" id="TfF-Go-Imd">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="yys-xS-KL8">
-                                                    <rect key="frame" x="15" y="23" width="85.666666666666671" height="30.333333333333329"/>
+                                                    <rect key="frame" x="15" y="11" width="85.666666666666671" height="28"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ich-Nf-RKC">
-                                                            <rect key="frame" x="0.0" y="0.0" width="85.666666666666671" height="18.333333333333332"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="85.666666666666671" height="16"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Tag (optional)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Db-jr-rWK">
-                                                            <rect key="frame" x="0.0" y="18.333333333333336" width="85.666666666666671" height="12"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Tag (optional)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Db-jr-rWK">
+                                                            <rect key="frame" x="0.0" y="16" width="85.666666666666671" height="12"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                             <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -44,7 +44,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="0 days, 0 hours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EJv-7J-Cjc">
-                                                    <rect key="frame" x="249.66666666666666" y="23.333333333333329" width="110.33333333333334" height="18"/>
+                                                    <rect key="frame" x="249.66666666666666" y="9" width="110.33333333333334" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -54,9 +54,9 @@
                                                 <constraint firstItem="EJv-7J-Cjc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yys-xS-KL8" secondAttribute="trailing" constant="8" symbolic="YES" id="1l8-X5-srY"/>
                                                 <constraint firstItem="yys-xS-KL8" firstAttribute="leading" secondItem="TfF-Go-Imd" secondAttribute="leadingMargin" id="4os-Eu-fFI"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="yys-xS-KL8" secondAttribute="bottom" id="C9G-IL-vxj"/>
+                                                <constraint firstItem="yys-xS-KL8" firstAttribute="centerY" secondItem="TfF-Go-Imd" secondAttribute="centerY" id="ETD-3L-TXf"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="EJv-7J-Cjc" secondAttribute="trailing" id="M3o-S3-PpG"/>
-                                                <constraint firstItem="ich-Nf-RKC" firstAttribute="centerY" secondItem="TfF-Go-Imd" secondAttribute="centerY" id="dZS-3H-T7b"/>
-                                                <constraint firstItem="EJv-7J-Cjc" firstAttribute="centerY" secondItem="TfF-Go-Imd" secondAttribute="centerY" id="nS2-pd-eU7"/>
+                                                <constraint firstItem="EJv-7J-Cjc" firstAttribute="bottom" secondItem="ich-Nf-RKC" secondAttribute="bottom" id="f6u-0X-W5W"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -69,6 +69,7 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="lAr-gS-yjp" id="Zss-0F-bih"/>
+                                    <outlet property="delegate" destination="lAr-gS-yjp" id="dcx-w9-Wi8"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -106,7 +107,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iAd-vk-RcK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="596" y="618"/>
+            <point key="canvasLocation" x="596" y="617.73399014778329"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tie-1N-fJc">
@@ -176,7 +177,7 @@
                                 <rect key="frame" x="0.0" y="209" width="375" height="216"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </datePicker>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Display countdown time in..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z05-vL-dfe">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Countdown Display Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z05-vL-dfe">
                                 <rect key="frame" x="16" y="445" width="343" height="20.333333333333314"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <nil key="textColor"/>
@@ -221,6 +222,10 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="gin-Nu-Ef0" id="mdF-XL-d2w"/>
+                                    <outlet property="delegate" destination="gin-Nu-Ef0" id="TYJ-O4-L0K"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -301,6 +306,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="bFN-wE-Omy" id="Lvw-sW-hAx"/>
+                                    <outlet property="delegate" destination="bFN-wE-Omy" id="mOL-9l-5ms"/>
+                                </connections>
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mpq-dT-Iya">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>

@@ -15,7 +15,7 @@ class CountdownDetailViewController: UIViewController {
     var countdownController: CountdownController?
     var countdownTableView: UITableView?
     var countdown: Countdown?
-    
+    var timeIntervalSetting = TimeIntervalSetting()
     //MARK: - IBOutlets
 
     @IBOutlet weak var eventNameTextField: UITextField!
@@ -37,9 +37,6 @@ class CountdownDetailViewController: UIViewController {
         let tag = tagNameTextField.text
         let eventDate = eventDatePicker.date
         
-        // MARK: Fix Me
-        let timeIntervalSetting = [TimeIntervalSetting(name: "Days", state: true)]
-        
         let newCountdownData = CountdownData(eventName: eventName, tag: tag, eventDate: eventDate, timeIntervalSetting: timeIntervalSetting)
         
         if let countdown = countdown {
@@ -51,16 +48,22 @@ class CountdownDetailViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    private func getTimeIntervalSettingsFromTableView() -> TimeIntervalSetting {
+        return TimeIntervalSetting()
+    }
+    
     func updateViews() {
         if let countdown = countdown {
             eventNameTextField.text = countdown.eventName
             tagNameTextField.text = countdown.tag
             eventDatePicker.date = countdown.eventDate
+            timeIntervalSetting = countdown.timeIntervalSetting
             
             navigationItem.title = "Edit Countdown"
         } else {
             navigationItem.title = "Add Countdown"
         }
+        tableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -70,26 +73,59 @@ class CountdownDetailViewController: UIViewController {
     
 }
 
-extension CountdownDetailViewController: UITableViewDataSource {
+extension CountdownDetailViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return TimeIntervalSetting.getNames().count
+        return TimeIntervalSetting.intervalNames().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "TimeIntervalCell", for: indexPath) as?
-            TimeIntervalTableViewCell,
-        let timeIntervalSetting = countdown?.timeIntervalSetting[indexPath.row] else { return UITableViewCell() }
+            TimeIntervalTableViewCell else { return UITableViewCell() }
         
-        //cell.timeIntervalLabel.text = TimeIntervalSetting.intervalNames()[indexPath.row]
-        //cell.timeIntervalSwitch.isOn = state
-        cell.timeIntervalSetting = timeIntervalSetting
+        let timeIntervalName = TimeIntervalSetting.intervalNames()[indexPath.row]
+        cell.timeIntervalLabel.text = timeIntervalName
+        
+        if let timeIntervalSetting = countdown?.timeIntervalSetting.getCurrentSettings()[indexPath.row] {
+            cell.timeIntervalSwitch.isOn = timeIntervalSetting
+        }
         
         return cell
     }
 }
 
-extension CountdownTableViewController: TimeIntervalTableViewCellDelegate {
+extension CountdownDetailViewController: TimeIntervalTableViewCellDelegate {
     func toggleTimeIntervalSwitch(for cell: TimeIntervalTableViewCell) {
-        
+        switch cell.timeIntervalLabel.text {
+        case "Days":
+            let setting = cell.timeIntervalSwitch.isOn
+            if let countdown = countdown {
+                countdown.timeIntervalSetting.days = setting
+            } else {
+                timeIntervalSetting.days = setting
+            }
+        case "Hours":
+            let setting = cell.timeIntervalSwitch.isOn
+            if let countdown = countdown {
+                countdown.timeIntervalSetting.hours = setting
+            } else {
+                timeIntervalSetting.hours = setting
+            }
+        case "Minutes":
+            let setting = cell.timeIntervalSwitch.isOn
+            if let countdown = countdown {
+                countdown.timeIntervalSetting.minutes = setting
+            } else {
+                timeIntervalSetting.minutes = setting
+            }
+        case "Seconds":
+            let setting = cell.timeIntervalSwitch.isOn
+            if let countdown = countdown {
+                countdown.timeIntervalSetting.seconds = setting
+            } else {
+                timeIntervalSetting.seconds = setting
+            }
+        default:
+            break
+        }
     }
 }
