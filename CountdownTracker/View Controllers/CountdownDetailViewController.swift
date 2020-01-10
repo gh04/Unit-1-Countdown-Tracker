@@ -55,6 +55,7 @@ class CountdownDetailViewController: UIViewController {
             eventDatePicker.date = countdown.eventDate
         } else {
             navigationItem.title = "Add Countdown"
+            eventDatePicker.date = Date(timeIntervalSinceNow: 86400)
         }
     }
     

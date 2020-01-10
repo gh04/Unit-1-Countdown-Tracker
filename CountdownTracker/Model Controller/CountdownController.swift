@@ -23,7 +23,7 @@ class CountdownController {
     
     private(set) var countdowns: [Countdown] = []
     
-    var tags: [String] {
+    var tagNames: [String] {
         var result: [String] = []
         
         for countdown in countdowns {

@@ -156,7 +156,7 @@
                         <sections>
                             <tableViewSection headerTitle="Countdown Units" id="9qX-0N-8Na">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Sd2-QK-EbS">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="Sd2-QK-EbS">
                                         <rect key="frame" x="0.0" y="72" width="375" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Sd2-QK-EbS" id="jMt-Bc-MdM">
@@ -185,7 +185,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Sdv-ML-04X">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="Sdv-ML-04X">
                                         <rect key="frame" x="0.0" y="115.66666793823242" width="375" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Sdv-ML-04X" id="I3h-1K-Mcr">
@@ -214,7 +214,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="69R-iU-d9R">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="69R-iU-d9R">
                                         <rect key="frame" x="0.0" y="159.33333587646484" width="375" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="69R-iU-d9R" id="ymu-36-HhB">
@@ -243,7 +243,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TimeIntervalCell" id="6Ur-cR-1QO">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="6Ur-cR-1QO">
                                         <rect key="frame" x="0.0" y="203.00000381469727" width="375" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6Ur-cR-1QO" id="Ujl-3B-1xf">
@@ -276,10 +276,11 @@
                             </tableViewSection>
                         </sections>
                         <connections>
-                            <outlet property="dataSource" destination="gam-3m-4eB" id="dVW-Wh-KkL"/>
+                            <outlet property="dataSource" destination="gam-3m-4eB" id="IBE-67-s99"/>
                             <outlet property="delegate" destination="gam-3m-4eB" id="DXy-tX-bQT"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="YG9-jI-xSO"/>
                     <connections>
                         <outletCollection property="countdownUnitSwitches" destination="F5l-SX-xEL" collectionClass="NSMutableArray" id="fSW-G4-Pg8"/>
                         <outletCollection property="countdownUnitSwitches" destination="WZS-ge-wIr" collectionClass="NSMutableArray" id="SCv-gO-0l6"/>
@@ -408,10 +409,12 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="filterSwitch" destination="eLf-B3-4ux" id="6aG-qL-gnF"/>
                                             <outlet property="tagNameLabel" destination="DMZ-hP-dmo" id="qDu-Gs-fZ6"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <sections/>
                                 <connections>
                                     <outlet property="dataSource" destination="bFN-wE-Omy" id="Lvw-sW-hAx"/>
                                     <outlet property="delegate" destination="bFN-wE-Omy" id="mOL-9l-5ms"/>
@@ -421,9 +424,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                                 <items>
                                     <navigationItem id="P7V-qg-usU">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="cjX-2u-7Re">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="a1H-EM-YoB">
                                             <connections>
-                                                <action selector="backButtonTapped:" destination="bFN-wE-Omy" id="DVf-Tz-oRq"/>
+                                                <action selector="doneButtonTapped:" destination="bFN-wE-Omy" id="w4K-BT-Gke"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -451,6 +454,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2gb-CD-fGd"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="LWG-yR-edH" id="UiG-2n-dbq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yxn-v3-NFX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -463,6 +469,6 @@
         <image name="slider.horizontal.3" catalog="system" width="64" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HGE-ne-MqT"/>
+        <segue reference="zHF-30-kr0"/>
     </inferredMetricsTieBreakers>
 </document>

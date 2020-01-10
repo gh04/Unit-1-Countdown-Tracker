@@ -13,6 +13,7 @@ class CountdownTableViewController: UIViewController {
     //MARK: - Properties
 
     var countdownController = CountdownController()
+    lazy var filteredTagNames: [String] = countdownController.tagNames
     
     //MARK: - IBOutlets
     
@@ -26,6 +27,11 @@ class CountdownTableViewController: UIViewController {
     
     //MARK: - Methods
 
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(true)
+//        self.tableView.reloadData()
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         countdownController.loadFromPersistentStore()
@@ -47,12 +53,12 @@ class CountdownTableViewController: UIViewController {
             countdownDetailVC.countdownController = countdownController
             countdownDetailVC.countdownTableView = tableView
             countdownDetailVC.countdown = cell.countdown
-            countdownDetailVC.countdown = cell.countdown
 
         case "FilterSegue":
             guard let filterTableVC = segue.destination as? FilterTableViewController else { return }
-            filterTableVC.countdownController = countdownController
-            filterTableVC.countdownTableView = tableView
+            filterTableVC.tagNames = countdownController.tagNames
+            filterTableVC.filteredTagNames = filteredTagNames
+            filterTableVC.delegate = self
             
         case "SettingsSegue":
             guard let SettingsTableVC = segue.destination as? SettingsTableViewController else { return }
@@ -96,9 +102,17 @@ extension CountdownTableViewController: UITableViewDataSource {
 
 extension CountdownTableViewController: CountdownSettingsDelegate {
     func countdownDisplaySettingsChanged() {
-        if let countdownDisplaySettings = UserDefaults.standard.array(forKey: .countdownDisplaySettingsKey) as? [Bool] {
-            print(countdownDisplaySettings)
-        }
+//        if let countdownDisplaySettings = UserDefaults.standard.array(forKey: .countdownDisplaySettingsKey) as? [Bool] {
+//            print(countdownDisplaySettings)
+//        }
         tableView.reloadData()
+    }
+}
+
+// MARK: - Filter Delegate
+
+extension CountdownTableViewController: FilterDelegate {
+    func filterSettingsChanged(filterSettings: [Bool]) {
+        
     }
 }
