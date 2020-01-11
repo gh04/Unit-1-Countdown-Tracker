@@ -377,10 +377,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LWG-yR-edH">
-                                <rect key="frame" x="0.0" y="117" width="375" height="607"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="668"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FilterCell" id="Sk5-vn-Qut" customClass="FilterTableViewCell" customModule="CountdownTracker" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="FilterCell" id="Sk5-vn-Qut" customClass="FilterTableViewCell" customModule="CountdownTracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Sk5-vn-Qut" id="sy5-aQ-Mhc">
@@ -423,7 +423,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mpq-dT-Iya">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                                 <items>
-                                    <navigationItem id="P7V-qg-usU">
+                                    <navigationItem title="Filter Settings" id="P7V-qg-usU">
                                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="a1H-EM-YoB">
                                             <connections>
                                                 <action selector="doneButtonTapped:" destination="bFN-wE-Omy" id="w4K-BT-Gke"/>
@@ -432,24 +432,15 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter by..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U05-93-Z46">
-                                <rect key="frame" x="16" y="76" width="343" height="21"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="2gb-CD-fGd" firstAttribute="trailing" secondItem="LWG-yR-edH" secondAttribute="trailing" id="7Uq-my-1DQ"/>
                             <constraint firstItem="mpq-dT-Iya" firstAttribute="leading" secondItem="2gb-CD-fGd" secondAttribute="leading" id="COT-Gn-PWB"/>
-                            <constraint firstItem="LWG-yR-edH" firstAttribute="top" secondItem="U05-93-Z46" secondAttribute="bottom" constant="20" id="Fos-g8-9V7"/>
+                            <constraint firstItem="LWG-yR-edH" firstAttribute="top" secondItem="mpq-dT-Iya" secondAttribute="bottom" symbolic="YES" id="JQw-Ba-qJF"/>
                             <constraint firstItem="mpq-dT-Iya" firstAttribute="trailing" secondItem="2gb-CD-fGd" secondAttribute="trailing" id="Jqd-DB-ITv"/>
-                            <constraint firstItem="U05-93-Z46" firstAttribute="leading" secondItem="2gb-CD-fGd" secondAttribute="leading" constant="16" id="LlP-Y5-4sk"/>
-                            <constraint firstItem="U05-93-Z46" firstAttribute="top" secondItem="mpq-dT-Iya" secondAttribute="bottom" constant="20" id="Q6c-QI-npa"/>
                             <constraint firstItem="mpq-dT-Iya" firstAttribute="top" secondItem="2gb-CD-fGd" secondAttribute="top" id="TK1-uQ-b3G"/>
                             <constraint firstItem="LWG-yR-edH" firstAttribute="leading" secondItem="2gb-CD-fGd" secondAttribute="leading" id="lfa-wH-d1Y"/>
-                            <constraint firstItem="2gb-CD-fGd" firstAttribute="trailing" secondItem="U05-93-Z46" secondAttribute="trailing" constant="16" id="vFW-Ns-qqh"/>
                             <constraint firstItem="2gb-CD-fGd" firstAttribute="bottom" secondItem="LWG-yR-edH" secondAttribute="bottom" id="w2b-cI-3Yj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2gb-CD-fGd"/>

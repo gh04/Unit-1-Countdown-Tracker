@@ -13,7 +13,6 @@ class CountdownTableViewController: UIViewController {
     //MARK: - Properties
 
     var countdownController = CountdownController()
-    lazy var filteredTagNames: [String] = countdownController.tagNames
     
     //MARK: - IBOutlets
     
@@ -56,9 +55,9 @@ class CountdownTableViewController: UIViewController {
 
         case "FilterSegue":
             guard let filterTableVC = segue.destination as? FilterTableViewController else { return }
-            filterTableVC.tagNames = countdownController.tagNames
-            filterTableVC.filteredTagNames = filteredTagNames
             filterTableVC.delegate = self
+            filterTableVC.countdownController = countdownController
+
             
         case "SettingsSegue":
             guard let SettingsTableVC = segue.destination as? SettingsTableViewController else { return }
@@ -75,14 +74,25 @@ class CountdownTableViewController: UIViewController {
 
 extension CountdownTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return countdownController.countdowns.count
+        return countdownController.displayedCountdowns.count
+//        if filterIsOn {
+//            return filteredTagNames.count
+//        } else {
+//        return countdownController.countdowns.count
+//        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CountdownCell", for: indexPath) as?
             CountdownTableViewCell else { return UITableViewCell() }
         
-        cell.countdown = countdownController.countdowns[indexPath.row]
+//        if filterIsOn {
+//            cell.countdown = countdownController.countdowns[indexPath.row]
+//        } else {
+//            cell.countdown = countdownController.countdowns[indexPath.row]
+//        }
+        
+        cell.countdown = countdownController.displayedCountdowns[indexPath.row]
         
         return cell
     }
@@ -102,17 +112,17 @@ extension CountdownTableViewController: UITableViewDataSource {
 
 extension CountdownTableViewController: CountdownSettingsDelegate {
     func countdownDisplaySettingsChanged() {
+        tableView.reloadData()
 //        if let countdownDisplaySettings = UserDefaults.standard.array(forKey: .countdownDisplaySettingsKey) as? [Bool] {
 //            print(countdownDisplaySettings)
 //        }
-        tableView.reloadData()
     }
 }
 
-// MARK: - Filter Delegate
+// MARK: - Filter TableView Delegate
 
-extension CountdownTableViewController: FilterDelegate {
-    func filterSettingsChanged(filterSettings: [Bool]) {
-        
+extension CountdownTableViewController: FilterTableViewDelegate {
+    func filterSettingsChanged() {
+        tableView.reloadData()
     }
 }

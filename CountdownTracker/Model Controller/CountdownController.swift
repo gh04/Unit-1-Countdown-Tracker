@@ -23,16 +23,43 @@ class CountdownController {
     
     private(set) var countdowns: [Countdown] = []
     
+    var filterIsOn: Bool = true //MARK: TODO: Add filterIsOn to UserDefaults
+    
+    var noTagFilterIsOn: Bool = true
+    
+    lazy var filteredTagNames: [String] = tagNames
+    
+    // MARK: - Computed Properties
+
     var tagNames: [String] {
         var result: [String] = []
-        
         for countdown in countdowns {
-            if let tag = countdown.tag,
-            !result.contains(tag){
+            let tag = countdown.tag
+            if tag != "", !result.contains(tag){
                 result.append(tag)
             }
         }
         return result
+    }
+    
+    var displayedCountdowns: [Countdown] {
+        if filterIsOn {
+            if noTagFilterIsOn {
+                return countdowns.filter { $0.tag == "" || filteredTagNames.contains($0.tag) }
+            } else {
+                return countdowns.filter { filteredTagNames.contains($0.tag) }
+            }
+        } else {
+            return countdowns
+        }
+    }
+
+    var countdownsWithNoTag: [Countdown] {
+        return countdowns.filter { $0.tag == "" }
+    }
+    
+    var countdownsWithCustomTag: [Countdown] {
+        return countdowns.filter { $0.tag != "" }
     }
 
     // MARK: - CRUD Methods

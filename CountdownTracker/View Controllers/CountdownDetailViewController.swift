@@ -33,7 +33,7 @@ class CountdownDetailViewController: UIViewController {
             !eventName.isEmpty,
             eventDatePicker.date > Date() else { return }
         
-        let tag = tagNameTextField.text
+        let tag = tagNameTextField.text ?? ""
         let eventDate = eventDatePicker.date
         let newCountdownData = CountdownData(eventName: eventName, tag: tag, eventDate: eventDate)
         

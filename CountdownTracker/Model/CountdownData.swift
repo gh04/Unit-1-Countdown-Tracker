@@ -10,10 +10,10 @@ import Foundation
 
 class CountdownData: Codable {
     var eventName: String
-    var tag: String?
+    var tag: String
     var eventDate: Date
     
-    init(eventName: String, tag: String? = nil, eventDate: Date) {
+    init(eventName: String, tag: String, eventDate: Date) {
         self.eventName = eventName
         self.tag = tag
         self.eventDate = eventDate
