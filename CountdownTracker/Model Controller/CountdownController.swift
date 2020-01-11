@@ -8,6 +8,13 @@
 
 import Foundation
 
+enum SortStyle {
+    case time_minToMax
+    case time_maxToMin
+    case tagName_AToZ
+    case tagName_ZToA
+}
+
 class CountdownController {
     
     // MARK: - Initializer
@@ -26,6 +33,12 @@ class CountdownController {
     var filterIsOn: Bool = true //MARK: TODO: Add filterIsOn to UserDefaults
     
     var noTagFilterIsOn: Bool = true
+    
+    var sortStyle: SortStyle = .time_minToMax {
+        didSet {
+            sortDisplayedCountdowns()
+        }
+    }
     
     lazy var filteredTagNames: [String] = tagNames
     
@@ -62,6 +75,10 @@ class CountdownController {
         return countdowns.filter { $0.tag != "" }
     }
 
+    func sortDisplayedCountdowns() {
+        //MARK: TODO: Implement Sorting Function
+    }
+    
     // MARK: - CRUD Methods
     
     func initializeCountdowns() {
