@@ -23,16 +23,8 @@ class FilterTableViewController: UIViewController {
     //MARK: - Properties
     
     var delegate: FilterTableViewDelegate?
-    
     var countdownController: CountdownController?
-        
-    var filteredTagNames: [String] = []
-        
     var sections: [SectionTypes] = [.filter]
-    
-//    var tagFilterSettings: [Bool] {
-//        return tagNames.map { filteredTagNames.contains($0) }
-//    }
     
     //MARK: - IBOutlets
     
@@ -65,24 +57,6 @@ extension FilterTableViewController: UITableViewDataSource, UITableViewDelegate 
     func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
-
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        switch sections[section] {
-//        case .filter, .noTag:
-//            return nil
-//        case .customTag:
-//            return "Custom Tags"
-//        }
-//    }
-//
-//    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-//        switch sections[section] {
-//        case .filter:
-//            return "Turn on filter to display only the countdowns with tags selected below"
-//        case .noTag, .customTag:
-//            return nil
-//        }
-//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch sections[section] {
@@ -95,8 +69,7 @@ extension FilterTableViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "FilterCell", for: indexPath) as?
-            FilterTableViewCell,
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "FilterCell", for: indexPath) as? FilterTableViewCell,
         let countdownController = countdownController else { return UITableViewCell() }
         
         cell.delegate = self
@@ -106,7 +79,7 @@ extension FilterTableViewController: UITableViewDataSource, UITableViewDelegate 
             cell.tagNameLabel.text = "Filter"
             cell.filterSwitch.isOn = countdownController.filterIsOn
         case .noTag:
-            cell.tagNameLabel.text = "No Tag"
+            cell.tagNameLabel.text = "No tag (blank)"
             cell.filterSwitch.isOn = countdownController.noTagFilterIsOn
             cell.filterSwitch.isEnabled = countdownController.filterIsOn
         case .customTag:
@@ -118,9 +91,76 @@ extension FilterTableViewController: UITableViewDataSource, UITableViewDelegate 
 
         return cell
     }
+    
+    //MARK: - Section Header
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        switch sections[section] {
+        case .filter:
+            return createViewForSectionHeader()
+        case .noTag:
+            return createViewForSectionHeader(withText: "DEFAULT")
+        case .customTag:
+            return createViewForSectionHeader(withText: "CUSTOM TAGS")
+        }
+    }
+    
+    func createViewForSectionHeader(withText text: String? = nil) -> UIView {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 30))
+        view.backgroundColor = #colorLiteral(red: 0.8980392157, green: 0.8980392157, blue: 0.8980392157, alpha: 1)
+        
+        guard let headerText = text else { return view }
+        
+        let label = UILabel(frame: CGRect(x: 16, y: 0, width: view.frame.width - 32, height: 30))
+        label.text = headerText
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        view.addSubview(label)
+        
+        return view
+    }
+    
+    //MARK: - Section Footer
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        switch sections[section] {
+        case .filter:
+            let footerText = "When Filter is On, only countdowns with the selected tags will be displayed."
+            return createViewForSectionFooter(withText: footerText)
+        case .noTag, .customTag:
+            return nil
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        switch sections[section] {
+        case .filter:
+            return 44
+        case .noTag, .customTag:
+            return 0
+        }
+    }
+    
+    func createViewForSectionFooter(withText text: String) -> UIView {
+        let label = UILabel(frame: CGRect(x: 16, y: 8, width: tableView.frame.width - 32, height: 30))
+        label.numberOfLines = 0
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        label.text = text
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        label.sizeToFit()
+
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: label.frame.height + 16))
+        view.backgroundColor = #colorLiteral(red: 0.8980392157, green: 0.8980392157, blue: 0.8980392157, alpha: 1)
+        view.addSubview(label)
+        
+        return view
+    }
+    
 }
 
-
+//MARK: - Filter Cell Delegate
 
 extension FilterTableViewController: FilterTableViewCellDelegate {
     

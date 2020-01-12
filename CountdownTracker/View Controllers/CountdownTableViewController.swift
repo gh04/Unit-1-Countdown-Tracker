@@ -73,24 +73,13 @@ class CountdownTableViewController: UIViewController {
 // MARK: - Data Source
 
 extension CountdownTableViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return countdownController.displayedCountdowns.count
-//        if filterIsOn {
-//            return filteredTagNames.count
-//        } else {
-//        return countdownController.countdowns.count
-//        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CountdownCell", for: indexPath) as?
-            CountdownTableViewCell else { return UITableViewCell() }
-        
-//        if filterIsOn {
-//            cell.countdown = countdownController.countdowns[indexPath.row]
-//        } else {
-//            cell.countdown = countdownController.countdowns[indexPath.row]
-//        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CountdownCell", for: indexPath) as? CountdownTableViewCell else { return UITableViewCell() }
         
         cell.countdown = countdownController.displayedCountdowns[indexPath.row]
         
@@ -119,7 +108,7 @@ extension CountdownTableViewController: CountdownSettingsDelegate {
     }
 }
 
-// MARK: - Filter TableView Delegate
+// MARK: - Filter Delegate
 
 extension CountdownTableViewController: FilterTableViewDelegate {
     func filterSettingsChanged() {
