@@ -46,21 +46,6 @@ class FilterTableViewController: UIViewController {
     @IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
-    
-    //MARK: - Life Cycle
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-//        guard let cc = countdownController else { return }
-//        if cc.hasCountdownsWithNoTag {
-//            sections.append(.noTag)
-//        }
-//        if cc.hasCountdownsWithCustomTag {
-//            sections.append(.customTag)
-//        }
-    }
-    
 }
 
 //MARK: - Data Source
@@ -170,7 +155,6 @@ extension FilterTableViewController: UITableViewDataSource, UITableViewDelegate 
         
         return view
     }
-    
 }
 
 //MARK: - Filter Cell Delegate

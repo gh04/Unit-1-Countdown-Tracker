@@ -30,16 +30,17 @@ class CountdownTableViewController: UIViewController {
             ("Time Remaining ↓", .time_minToMax),
             ("Time Remaining ↑", .time_maxToMin),
             ("Tag Name AZ↓", .tagName_AToZ),
-            ("Tag Name ZA↓", .tagName_ZToA)]
+            ("Tag Name ZA↓", .tagName_ZToA),
+            ("Event Name AZ↓", .eventName_AToZ),
+            ("Event Name ZA↓", .eventName_ZToA)]
         
         for sortOption in sortOptions {
             if sortOption.sortStyle == countdownController.sortStyle {
                 let currentSortStyleTitle = "                " + sortOption.title + "          ✔️"
-                sortMenu.addAction(UIAlertAction(title: currentSortStyleTitle, style: .default, handler: { action in
-                self.countdownController.sortStyle = sortOption.sortStyle }))
+                sortMenu.addAction(UIAlertAction(title: currentSortStyleTitle, style: .default, handler: nil))
             } else {
             sortMenu.addAction(UIAlertAction(title: sortOption.title, style: .default, handler: { action in
-                self.countdownController.sortStyle = sortOption.sortStyle }))
+                self.setCurrentSortStyle(to: sortOption.sortStyle) }))
             }
         }
         
@@ -47,14 +48,10 @@ class CountdownTableViewController: UIViewController {
         self.present(sortMenu, animated: true, completion: nil)
     }
     
-//    //MARK: - Countdown Finished Alert
-//
-//    private func showCountdownFinishedAlert(for eventName: String) {
-//        let alert = UIAlertController(title: eventName, message: "Your countdown has ended!", preferredStyle: .alert)
-//
-//        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-//        self.present(alert, animated: true, completion: nil)
-//    }
+    func setCurrentSortStyle(to sortStyle: SortStyle) {
+        countdownController.sortStyle = sortStyle
+        tableView.reloadData()
+    }
     
     //MARK: - Life Cycle
     
@@ -62,11 +59,6 @@ class CountdownTableViewController: UIViewController {
         super.viewDidLoad()
         countdownController.loadFromPersistentStore()
     }
-
-    //    override func viewWillAppear(_ animated: Bool) {
-    //        super.viewWillAppear(true)
-    //        self.tableView.reloadData()
-    //    }
     
     // MARK: - Navigation
 
@@ -90,7 +82,6 @@ class CountdownTableViewController: UIViewController {
             filterTableVC.delegate = self
             filterTableVC.countdownController = countdownController
 
-            
         case "SettingsSegue":
             guard let SettingsTableVC = segue.destination as? SettingsTableViewController else { return }
             SettingsTableVC.delegate = self
@@ -99,7 +90,6 @@ class CountdownTableViewController: UIViewController {
             return
         }
     }
-
 }
 
 // MARK: - Data Source
@@ -144,18 +134,3 @@ extension CountdownTableViewController: FilterTableViewDelegate {
         tableView.reloadData()
     }
 }
-
-// MARK: - Timer Delegate
-//
-//extension CountdownTableViewController: CountdownDelegate {
-//    func countdownDidFinish(for eventName: String) {
-//        //updateViews()
-//        tableView.reloadData()
-//        showCountdownFinishedAlert(for: eventName)
-//    }
-//
-//    func countdownDidUpdate(timeRemaining: TimeInterval) {
-//        //updateViews()
-//        tableView.reloadData()
-//    }
-//}

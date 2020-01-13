@@ -170,7 +170,7 @@
                                                     </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Days" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pnc-d0-Unn">
-                                                    <rect key="frame" x="16" y="11.999999999999998" width="38" height="20.333333333333329"/>
+                                                    <rect key="frame" x="16" y="12" width="38" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -381,20 +381,20 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="FilterCell" id="Sk5-vn-Qut" customClass="FilterTableViewCell" customModule="CountdownTracker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="redraw" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Sk5-vn-Qut" id="sy5-aQ-Mhc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eLf-B3-4ux">
-                                                    <rect key="frame" x="311" y="6.3333333333333321" width="51" height="30.999999999999996"/>
+                                                    <rect key="frame" x="311" y="7" width="51" height="31"/>
                                                     <connections>
                                                         <action selector="filterSwitchIsToggled:" destination="Sk5-vn-Qut" eventType="valueChanged" id="kmW-ia-eOx"/>
                                                     </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tag Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DMZ-hP-dmo">
-                                                    <rect key="frame" x="15" y="11.333333333333336" width="77" height="21"/>
+                                                    <rect key="frame" x="15" y="11.666666666666666" width="77" height="21.333333333333336"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -406,6 +406,7 @@
                                                 <constraint firstItem="eLf-B3-4ux" firstAttribute="trailing" secondItem="sy5-aQ-Mhc" secondAttribute="trailingMargin" id="TQh-6f-uBL"/>
                                                 <constraint firstItem="eLf-B3-4ux" firstAttribute="centerY" secondItem="sy5-aQ-Mhc" secondAttribute="centerY" id="i7N-bl-gRR"/>
                                                 <constraint firstItem="DMZ-hP-dmo" firstAttribute="centerY" secondItem="sy5-aQ-Mhc" secondAttribute="centerY" id="pmt-eA-I8c"/>
+                                                <constraint firstItem="DMZ-hP-dmo" firstAttribute="top" secondItem="sy5-aQ-Mhc" secondAttribute="top" constant="11.67" id="wDm-SN-b48"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -451,7 +452,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yxn-v3-NFX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1447" y="258"/>
+            <point key="canvasLocation" x="1445.5999999999999" y="257.88177339901478"/>
         </scene>
     </scenes>
     <resources>

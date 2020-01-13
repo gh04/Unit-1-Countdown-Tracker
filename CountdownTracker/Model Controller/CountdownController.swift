@@ -13,6 +13,8 @@ enum SortStyle: Int {
     case time_maxToMin
     case tagName_AToZ
     case tagName_ZToA
+    case eventName_AToZ
+    case eventName_ZToA
 }
 
 class CountdownController {
@@ -49,11 +51,10 @@ class CountdownController {
         willSet {
             guard newValue != self.sortStyle else { return }
             UserDefaults.standard.set(newValue.rawValue, forKey: .sortStyleRawValueKey)
-
         }
     }
     
-    var filteredTagNames: [String] = [""] {
+    var filteredTagNames: [String] = [] {
         willSet {
             guard newValue != self.filteredTagNames else { return }
             UserDefaults.standard.set(newValue, forKey: .filteredTagNamesKey)
@@ -108,6 +109,10 @@ class CountdownController {
             return countdowns.sorted { $0.tag.lowercased() < $1.tag.lowercased() }
         case .tagName_ZToA:
             return countdowns.sorted { $0.tag.lowercased() > $1.tag.lowercased() }
+        case .eventName_AToZ:
+            return countdowns.sorted { $0.eventName.lowercased() < $1.eventName.lowercased() }
+        case .eventName_ZToA:
+            return countdowns.sorted { $0.eventName.lowercased() > $1.eventName.lowercased() }
         }
     }
     

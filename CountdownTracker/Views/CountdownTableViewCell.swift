@@ -24,7 +24,7 @@ class CountdownTableViewCell: UITableViewCell {
     
     var dateFormatter: DateComponentsFormatter {
         let formatter = DateComponentsFormatter()
-        formatter.unitsStyle = .short
+        formatter.unitsStyle = .abbreviated
         formatter.zeroFormattingBehavior = .pad
         formatter.allowedUnits = getAllowedUnits()
         
