@@ -19,34 +19,32 @@ class CountdownTableViewCell: UITableViewCell {
     //MARK: - Properties
     
     var countdown: Countdown? {
-        didSet {
-            updateViews()
-        }
+        didSet { updateViews() }
     }
     
     var dateFormatter: DateComponentsFormatter {
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .short
-                
-        if let countdownDisplaySettings = UserDefaults.standard.array(forKey: .countdownDisplaySettingsKey) as? [Bool] {
-            //MARK: TODO: Update Units
-            let units: [NSCalendar.Unit] = [.day, .hour, .minute, .second]
-            var allowedUnits: NSCalendar.Unit = []
-            
-            for i in units.indices where countdownDisplaySettings[i] {
-                allowedUnits.insert(units[i])
-            }
-            
-            formatter.allowedUnits = allowedUnits
-            
-        } else {
-            formatter.allowedUnits = [.day, .hour, .minute, .second]
-        }
+        formatter.zeroFormattingBehavior = .pad
+        formatter.allowedUnits = getAllowedUnits()
         
         return formatter
     }
     
     //MARK: - Methods
+    
+    func getAllowedUnits() -> NSCalendar.Unit {
+        guard let countdownDisplaySettings = UserDefaults.standard.array(forKey: .countdownDisplaySettingsKey) as? [Bool] else { return [.day, .hour, .minute, .second] }
+        
+        let units: [NSCalendar.Unit] = [.day, .hour, .minute, .second]
+        var allowedUnits: NSCalendar.Unit = []
+        
+        for i in units.indices where countdownDisplaySettings[i] {
+            allowedUnits.insert(units[i])
+        }
+        
+        return allowedUnits
+    }
     
     func updateViews() {
         guard let countdown = countdown else { return }
@@ -55,42 +53,24 @@ class CountdownTableViewCell: UITableViewCell {
         eventNameLabel.text = countdown.eventName
         tagLabel.text = countdown.tag
         
+        //countdownTimeLabel.font = UIFont.monospacedSystemFont(ofSize: countdownTimeLabel.font.pointSize, weight: .semibold)
+        
         if countdown.state == .started {
             countdownTimeLabel.text = dateFormatter.string(from: countdown.timeRemaining)
         } else {
             countdownTimeLabel.text = dateFormatter.string(from: 0)
         }
     }
-    
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        // Initialization code
-//    }
-
-    /*
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    */
-
 }
 
-//MARK: - Countdown Delegate
+// MARK: - Timer Delegate
 
 extension CountdownTableViewCell: CountdownDelegate {
+    func countdownDidFinish(for eventName: String) {
+        updateViews()
+    }
+
     func countdownDidUpdate(timeRemaining: TimeInterval) {
         updateViews()
-    }
-    
-    func countdownDidFinish() {
-        updateViews()
-        showAlert()
-    }
-    
-    //MARK: TODO: Implement Alert
-    func showAlert() {
-        
     }
 }

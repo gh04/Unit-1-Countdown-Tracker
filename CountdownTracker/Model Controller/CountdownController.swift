@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum SortStyle {
+enum SortStyle: Int {
     case time_minToMax
     case time_maxToMin
     case tagName_AToZ
@@ -22,29 +22,47 @@ class CountdownController {
     init() {
         loadFromPersistentStore()
         initializeCountdowns()
+        
+        let userDefaults = UserDefaults.standard
+        
+        self.filterIsOn = userDefaults.bool(forKey: .filterIsOnKey)
+        self.noTagFilterIsOn = userDefaults.bool(forKey: .noTagFilterIsOnKey)
+        
+        if let sortStyle = SortStyle(rawValue: userDefaults.integer(forKey: .sortStyleRawValueKey)) {
+            self.sortStyle = sortStyle
+        }
+        
+        if let filteredTagNames = userDefaults.array(forKey: .filteredTagNamesKey) as? [String] {
+            self.filteredTagNames = filteredTagNames
+        }
     }
     
     // MARK: - Properties
 
     private(set) var countdownData: [CountdownData] = []
-    
     private(set) var countdowns: [Countdown] = []
     
-    var filterIsOn: Bool = true //MARK: TODO: Add filterIsOn to UserDefaults
-    
-    var noTagFilterIsOn: Bool = true
+    var filterIsOn: Bool = false { willSet { UserDefaults.standard.set(newValue, forKey: .filterIsOnKey) } }
+    var noTagFilterIsOn: Bool = true { willSet { UserDefaults.standard.set(newValue, forKey: .noTagFilterIsOnKey) } }
     
     var sortStyle: SortStyle = .time_minToMax {
-        didSet {
-            sortDisplayedCountdowns()
+        willSet {
+            guard newValue != self.sortStyle else { return }
+            UserDefaults.standard.set(newValue.rawValue, forKey: .sortStyleRawValueKey)
+
         }
     }
     
-    lazy var filteredTagNames: [String] = tagNames
+    var filteredTagNames: [String] = [""] {
+        willSet {
+            guard newValue != self.filteredTagNames else { return }
+            UserDefaults.standard.set(newValue, forKey: .filteredTagNamesKey)
+        }
+    }
     
     // MARK: - Computed Properties
 
-    var tagNames: [String] {
+    var customTagNames: [String] {
         var result: [String] = []
         for countdown in countdowns {
             let tag = countdown.tag
@@ -55,30 +73,43 @@ class CountdownController {
         return result
     }
     
+    var customTagFilterSettings: [Bool] { return customTagNames.map { filteredTagNames.contains($0) } }
+    var countdownsWithNoTag: [Countdown] { return countdowns.filter { $0.tag == "" } }
+    var countdownsWithCustomTag: [Countdown] { return countdowns.filter { $0.tag != "" } }
+    var hasCountdownsWithNoTag: Bool { return countdownsWithNoTag.count > 0 }
+    var hasCountdownsWithCustomTag: Bool { return countdownsWithCustomTag.count > 0 }
+
     var displayedCountdowns: [Countdown] {
+        var result: [Countdown] = []
+        
         if filterIsOn {
+            result = countdowns.filter { filteredTagNames.contains($0.tag) }
             if noTagFilterIsOn {
-                return countdowns.filter { $0.tag == "" || filteredTagNames.contains($0.tag) }
-            } else {
-                return countdowns.filter { filteredTagNames.contains($0.tag) }
+                result += countdownsWithNoTag
             }
         } else {
-            return countdowns
+            result = countdowns
+        }
+        
+        return sortedCountdowns(from: result)
+    }
+
+    // MARK: - Sort Methods
+
+    func sortedCountdowns(from countdowns: [Countdown], with sortStyle: SortStyle? = nil) -> [Countdown] {
+        let sortStyle = sortStyle ?? self.sortStyle
+        
+        switch sortStyle {
+        case .time_minToMax:
+            return countdowns.sorted { $0.eventDate < $1.eventDate }
+        case .time_maxToMin:
+            return countdowns.sorted { $0.eventDate > $1.eventDate }
+        case .tagName_AToZ:
+            return countdowns.sorted { $0.tag.lowercased() < $1.tag.lowercased() }
+        case .tagName_ZToA:
+            return countdowns.sorted { $0.tag.lowercased() > $1.tag.lowercased() }
         }
     }
-
-    var countdownsWithNoTag: [Countdown] {
-        return countdowns.filter { $0.tag == "" }
-    }
-    
-    var countdownsWithCustomTag: [Countdown] {
-        return countdowns.filter { $0.tag != "" }
-    }
-
-    func sortDisplayedCountdowns() {
-        //MARK: TODO: Implement Sorting Function
-    }
-    
     
     // MARK: - CRUD Methods
     
@@ -91,8 +122,7 @@ class CountdownController {
     }
     
     @discardableResult func createCountdown(with countdownData: CountdownData) -> Countdown? {
-        //guard !self.countdownData.contains(countdownData) else { return nil }
-        
+        guard !self.countdownData.contains(countdownData) else { return nil }
         self.countdownData.append(countdownData)
         
         let newCountdown = Countdown(with: countdownData)
@@ -110,6 +140,7 @@ class CountdownController {
         self.countdownData.remove(at: countdownDataIndex)
         countdowns[countdownIndex].cancelTimer()
         countdowns.remove(at: countdownIndex)
+        
         saveToPersistentStore()
     }
     
@@ -120,16 +151,10 @@ class CountdownController {
         countdownData[countdownDataIndex].eventDate = newCountdownData.eventDate
         countdownData[countdownDataIndex].eventName = newCountdownData.eventName
         countdownData[countdownDataIndex].tag = newCountdownData.tag
-//        countdownData.insert(newCountdownData, at: countdownDataIndex)
-//        countdownData.remove(at: countdownDataIndex + 1)
-
         countdowns[countdownIndex].eventDate = newCountdownData.eventDate
         countdowns[countdownIndex].eventName = newCountdownData.eventName
         countdowns[countdownIndex].tag = newCountdownData.tag
         countdowns[countdownIndex].start()
-//        let newCountdown = Countdown(with: newCountdownData)
-//        countdowns.insert(newCountdown, at: countdownIndex)
-//        countdowns.remove(at: countdownIndex + 1)
         
         saveToPersistentStore()
     }
@@ -169,3 +194,11 @@ class CountdownController {
     
 }
 
+// MARK: - Extensions
+
+extension String {
+    static var sortStyleRawValueKey = "SortStyleRawValueKey"
+    static var filterIsOnKey = "FilterIsOn"
+    static var noTagFilterIsOnKey = "NoTagFilterIsOn"
+    static var filteredTagNamesKey = "FilteredTagNames"
+}

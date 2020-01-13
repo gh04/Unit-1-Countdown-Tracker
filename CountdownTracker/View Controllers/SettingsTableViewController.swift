@@ -14,7 +14,9 @@ protocol CountdownSettingsDelegate: class {
 
 class SettingsTableViewController: UITableViewController {
     
-    // MARK: - IBOutlets
+    // MARK: - Properties & IBOutlets
+    
+    weak var delegate: CountdownSettingsDelegate?
     
     @IBOutlet var countdownUnitSwitches: [UISwitch]!
     
@@ -32,13 +34,15 @@ class SettingsTableViewController: UITableViewController {
         delegate?.countdownDisplaySettingsChanged()
     }
         
-    weak var delegate: CountdownSettingsDelegate?
+    // MARK: - Life Cycle
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateViews()
     }
-        
+    
+    // MARK: - Update Views
+
     private func updateViews() {
         guard let countdownDisplaySettings = UserDefaults.standard.array(forKey: .countdownDisplaySettingsKey) as? [Bool],
             countdownUnitSwitches.count == countdownDisplaySettings.count else { return }
@@ -49,6 +53,8 @@ class SettingsTableViewController: UITableViewController {
     }
     
 }
+
+// MARK: - Extensions
 
 extension String {
     static var countdownDisplaySettingsKey = "CountdownDisplaySettings"

@@ -10,7 +10,7 @@ import Foundation
 
 protocol CountdownDelegate: AnyObject {
     func countdownDidUpdate(timeRemaining: TimeInterval)
-    func countdownDidFinish()
+    func countdownDidFinish(for eventName: String)
 }
 
 enum CountdownState {
@@ -70,7 +70,7 @@ class Countdown: CountdownData {
             // Timer is finished, reset and stop counting down
             state = .ended
             cancelTimer()
-            delegate?.countdownDidFinish()
+            delegate?.countdownDidFinish(for: eventName)
         }
     }
     
