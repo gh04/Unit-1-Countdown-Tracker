@@ -190,7 +190,7 @@
                                                 <constraint firstItem="Pnc-d0-Unn" firstAttribute="leading" secondItem="jMt-Bc-MdM" secondAttribute="leadingMargin" id="tcd-rQ-rJD"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.7725490196" green="0.85490196080000003" blue="0.81960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.85882352939999995" green="0.92941176469999998" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="Sdv-ML-04X">
                                         <rect key="frame" x="0.0" y="115.66666793823242" width="375" height="43.666667938232422"/>
@@ -220,7 +220,7 @@
                                                 <constraint firstItem="WZS-ge-wIr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="o4j-FS-zOI" secondAttribute="trailing" constant="8" symbolic="YES" id="m0R-FX-rUr"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.7725490196" green="0.85490196080000003" blue="0.81960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.85882352939999995" green="0.92941176469999998" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="69R-iU-d9R">
                                         <rect key="frame" x="0.0" y="159.33333587646484" width="375" height="43.666667938232422"/>
@@ -250,7 +250,7 @@
                                                 <constraint firstItem="kMZ-Ha-ev0" firstAttribute="leading" secondItem="ymu-36-HhB" secondAttribute="leadingMargin" id="kaW-ce-hUn"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.7725490196" green="0.85490196080000003" blue="0.81960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.85882352939999995" green="0.92941176469999998" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="6Ur-cR-1QO">
                                         <rect key="frame" x="0.0" y="203.00000381469727" width="375" height="43.666667938232422"/>
@@ -280,7 +280,7 @@
                                                 <constraint firstItem="sDt-qM-VUD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="frb-0R-PdA" secondAttribute="trailing" constant="8" symbolic="YES" id="stZ-oS-8S4"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.7725490196" green="0.85490196080000003" blue="0.81960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.85882352939999995" green="0.92941176469999998" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -391,10 +391,10 @@
                                 <color key="backgroundColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="FilterCell" id="Sk5-vn-Qut" customClass="FilterTableViewCell" customModule="CountdownTracker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44.333332061767578"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="redraw" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Sk5-vn-Qut" id="sy5-aQ-Mhc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44.333332061767578"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eLf-B3-4ux">
@@ -404,7 +404,7 @@
                                                     </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tag Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DMZ-hP-dmo">
-                                                    <rect key="frame" x="15" y="11.666666666666664" width="77" height="21"/>
+                                                    <rect key="frame" x="15" y="11.666666666666666" width="77" height="20.666666666666671"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -419,7 +419,7 @@
                                                 <constraint firstItem="DMZ-hP-dmo" firstAttribute="top" secondItem="sy5-aQ-Mhc" secondAttribute="top" constant="11.67" id="wDm-SN-b48"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.7717213692958006" green="0.85420080305532986" blue="0.82126059435379362" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.85882352939999995" green="0.92941176469999998" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="filterSwitch" destination="eLf-B3-4ux" id="6aG-qL-gnF"/>
                                             <outlet property="tagNameLabel" destination="DMZ-hP-dmo" id="qDu-Gs-fZ6"/>
