@@ -2,10 +2,9 @@
 
 <p align="center">
     <img
-    src="https://github.com/gh04/Unit-1-Countdown-Tracker/blob/master/CountdownTracker/Assets.xcassets/AppIcon.appiconset/Countdowns%20Tracker%20App%20Icon-60%403x.png" width="350" height="350" alt="Countdown Tracker" />
+    src="https://github.com/gh04/Unit-1-Countdown-Tracker/blob/master/App%20Icon%20and%20Screenshots/iconfinder_clock_1646009.png" width="350" height="350" alt="Countdown Tracker" />
     
 </p>
-
 
 
 ### Countdown Tracker Features
@@ -13,7 +12,7 @@ Countdown Tracker is an app that allows user the ability to view multiple Countd
 
 <p align="center">
     <img
-        src="https://drive.google.com/open?id=1AhYrVJ867xMlOYvL3BmcQkDxlQjRLBj5" width="300" height="300" alt="Countdowns" />
+        src="https://github.com/gh04/Unit-1-Countdown-Tracker/blob/master/App%20Icon%20and%20Screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2011%20Pro%20Max%20-%202020-01-13%20at%2023.30.33.png" width="300" alt="Countdowns" />
         
         
 
@@ -22,7 +21,7 @@ Countdown Tracker gives users the ability to create unlimited  custom Countdown 
 
 <p align="center">
     <img
-        src="https://drive.google.com/open?id=16pUh2d8dQE179Aw16gVZ8nIO-IgAOoQA" width="300" height="300" alt="Tag Filter" />
+        src="https://github.com/gh04/Unit-1-Countdown-Tracker/blob/master/App%20Icon%20and%20Screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2011%20Pro%20Max%20-%202020-01-13%20at%2023.30.51.png" width="300" alt="Tag Filter" />
         
         
 
@@ -31,7 +30,7 @@ Toggle on or off the time granularity on the fly. Countdown a year away? Show it
 
 <p align="center">
     <img
-        src="https://drive.google.com/open?id=16pUh2d8dQE179Aw16gVZ8nIO-IgAOoQA" width="300" height="300" alt="Time Settings" />
+        src="https://github.com/gh04/Unit-1-Countdown-Tracker/blob/master/App%20Icon%20and%20Screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2011%20Pro%20Max%20-%202020-01-13%20at%2023.31.01.png" width="300" alt="Time Settings" />
 
 
 ### Sort Countdowns 
@@ -39,6 +38,6 @@ Countdown Tracker allows users to sort Countdowns by time remaning, tag name, or
 
 <p align="center">
 <img
-    src="https://drive.google.com/open?id=1JyusnQyO5WSCyT4JGsJPMJlZhX6c1GHQ" width="300" height="300" alt="Sort Settings" />
+    src="https://github.com/gh04/Unit-1-Countdown-Tracker/blob/master/App%20Icon%20and%20Screenshots/Simulator%20Screen%20Shot%20-%20iPhone%2011%20Pro%20Max%20-%202020-01-13%20at%2023.31.16.png" width="300" alt="Sort Settings" />
 
 
