@@ -20,7 +20,7 @@
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="126" id="C01-EN-lB3" customClass="PersonTableViewCell" customModule="FindACrew" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PersonCell" rowHeight="126" id="C01-EN-lB3" customClass="PersonTableViewCell" customModule="FindACrew" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="414" height="126"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="C01-EN-lB3" id="Aaw-59-uky">
@@ -58,6 +58,11 @@
                                         <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="buN-v5-i6i" secondAttribute="bottom" id="mpK-aJ-4Vy"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="birthYearLabel" destination="ZdP-OD-bwb" id="NOI-ur-oy2"/>
+                                    <outlet property="genderLabel" destination="kUl-R8-LSH" id="ruh-8A-2B1"/>
+                                    <outlet property="nameLabel" destination="BnG-b3-nPQ" id="4eA-ea-wwH"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -66,6 +71,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Find A Crew" id="SE4-9I-0jg"/>
+                    <connections>
+                        <outlet property="searchBar" destination="ujV-Dq-Olf" id="W3g-tp-lh7"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4H2-Ql-cSJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

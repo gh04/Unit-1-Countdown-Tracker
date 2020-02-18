@@ -9,82 +9,61 @@
 import UIKit
 
 class PersonSearchTableViewController: UITableViewController {
-
+//dont need to creat an outlet for TableView since it is already a TableViewController. if it was only a View controller with a TableView you would neeed to create a TableViewOutlet
+    // MARK: - Properties
+    private let personController = PersonController()
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    // MARK: - Public Methods
+   
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        searchBar.delegate = self
+        
     }
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        
+        return personController.people.count
     }
 
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
-        // Configure the cell...
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //another good reason to force unwrap because we need it to happen. if it fails here why know why
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PersonCell", for: indexPath) as! PersonTableViewCell
+        
+        guard indexPath.row < personController.people.count else { return cell }
+        let person = personController.people[indexPath.row]
+       //you want to set the labels in the PersonTableViewCell updateViews. Not here. set the cell to its model
+        cell.person = person
+       
 
         return cell
     }
-    */
+   
+}
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+extension PersonSearchTableViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchTerm = searchBar.text else { return }
+        
+        // so we know it is running
+        print("Searching for \(searchTerm)..")
+        
+        //using shortform closures. delete the closure
+
+        personController.searchForPeopleWith(searchTerm: searchTerm) {
+        //go back to the main queue.
+            DispatchQueue.main.async {            
+                //so we know it is working
+                print("Found \(self.personController.people.count) results!")
+                self.tableView.reloadData()
+            }
+            
+        }
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
